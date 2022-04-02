@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.client.aircasting.R
-import com.client.aircasting.ui.main.TabItem
 import com.client.aircasting.ui.main.viewmodel.MainViewModel
 import com.client.aircasting.ui.theme.AircastingComposeTheme
 import com.google.accompanist.pager.*

@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.main
+package com.client.aircasting.ui.main.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MusicScreen() {
+fun FollowingScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -23,7 +23,7 @@ fun MusicScreen() {
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = "Music View",
+            text = "Following View",
             fontWeight = FontWeight.Bold,
             color = Color.Blue,
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -35,12 +35,12 @@ fun MusicScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun MusicScreenPreview() {
-    MusicScreen()
+fun FollowingScreenPreview() {
+    FollowingScreen()
 }
 
 @Composable
-fun MoviesScreen() {
+fun MobileActiveScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -48,7 +48,7 @@ fun MoviesScreen() {
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = "Movies View",
+            text = "Mobile Active View",
             fontWeight = FontWeight.Bold,
             color = Color.Blue,
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -60,12 +60,12 @@ fun MoviesScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun MoviesScreenPreview() {
-    MoviesScreen()
+fun MobileActiveScreenPreview() {
+    MobileActiveScreen()
 }
 
 @Composable
-fun BooksScreen() {
+fun MobileDormantScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -73,7 +73,7 @@ fun BooksScreen() {
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
-            text = "Books View",
+            text = "Mobile Dormant View",
             fontWeight = FontWeight.Bold,
             color = Color.Blue,
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -85,6 +85,31 @@ fun BooksScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun BooksScreenPreview() {
-    BooksScreen()
+fun MobileDormantScreenPreview() {
+    MobileDormantScreen()
+}
+
+@Composable
+fun FixedScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .wrapContentSize(Alignment.Center)
+    ) {
+        Text(
+            text = "Fixed View",
+            fontWeight = FontWeight.Bold,
+            color = Color.Blue,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 25.sp
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FixedScreenPreview() {
+    FixedScreen()
 }
