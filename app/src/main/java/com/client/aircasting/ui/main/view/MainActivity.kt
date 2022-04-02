@@ -5,17 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,13 +53,12 @@ fun MainScreen() {
 
     Scaffold(
         topBar = { TopBar() },
-        content = {
+        bottomBar = { BottomBar() }, content = {
             Column {
                 Tabs(tabs = tabs, pagerState = pagerState)
                 TabsContent(tabs = tabs, pagerState = pagerState)
             }
-        },
-        bottomBar = { BottomBar() })
+        })
 }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
@@ -90,10 +87,13 @@ fun TopBarPreview() {
 @Composable
 fun BottomBar() {
     val selectedIndex = remember { mutableStateOf(0) }
-    BottomNavigation(backgroundColor = Color.White, elevation = 10.dp) {
+    BottomNavigation(backgroundColor = Color.White) {
 
         BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Home, "")
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_home_black_24dp),
+                ""
+            )
         },
             selected = (selectedIndex.value == 0),
             onClick = {
@@ -101,7 +101,7 @@ fun BottomBar() {
             })
 
         BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Favorite, "")
+            Icon(imageVector = ImageVector.vectorResource(id = R.drawable.ic_plus_black_24), "")
         },
             selected = (selectedIndex.value == 1),
             onClick = {
@@ -109,7 +109,10 @@ fun BottomBar() {
             })
 
         BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Person, "")
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_settings_black_24dp),
+                ""
+            )
         },
             selected = (selectedIndex.value == 2),
             onClick = {
