@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Aircasting</string>
+    <string name="following_tab">FOLLOWING</string>
+    <string name="active_tab">MOBILE ACTIVE</string>
+    <string name="dormont_tab">MOBILE DORMONT</string>
+    <string name="fixed_tab">FIXED</string>
+</resources>
