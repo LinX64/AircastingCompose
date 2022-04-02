@@ -94,7 +94,7 @@ fun BottomBar() {
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_home_black_24dp),
                 ""
             )
-        },
+        }, selectedContentColor = Color(R.color.aircasting_dark_blue),
             selected = (selectedIndex.value == 0),
             onClick = {
                 selectedIndex.value = 0
