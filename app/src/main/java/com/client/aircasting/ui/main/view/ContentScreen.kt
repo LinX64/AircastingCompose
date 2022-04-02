@@ -13,23 +13,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.client.aircasting.ui.main.viewmodel.MainViewModel
 
 @Composable
 fun FollowingScreen() {
+    val mainViewModel = hiltViewModel<MainViewModel>()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
             .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = "Following View",
-            fontWeight = FontWeight.Bold,
-            color = Color.Blue,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
+
+
+        MovieList(movieList = mainViewModel.movieListResponse)
+        mainViewModel.getMovieList()
+
     }
 }
 

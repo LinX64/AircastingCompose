@@ -3,6 +3,9 @@ package com.client.aircasting.ui.main.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
@@ -16,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -56,6 +60,7 @@ fun MainScreen() {
     )
     val pagerState = rememberPagerState()
 
+
     Scaffold(
         topBar = { TopBar() },
         bottomBar = { BottomBar() }
@@ -63,8 +68,8 @@ fun MainScreen() {
         Column {
             Tabs(tabs = tabs, pagerState = pagerState)
             TabsContent(tabs = tabs, pagerState = pagerState)
-        }
 
+        }
     }
 }
 
@@ -185,20 +190,5 @@ fun BottomBar() {
             onClick = {
                 selectedIndex.value = 2
             })
-    }
-}
-
-
-@Composable
-fun AircastingAppbar() {
-    val mainViewModel = hiltViewModel<MainViewModel>()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        TopAppBar(backgroundColor = Color.White, title = { Text(text = "Dashboard") })
-
-        MovieList(movieList = mainViewModel.movieListResponse)
-        mainViewModel.getMovieList()
     }
 }
