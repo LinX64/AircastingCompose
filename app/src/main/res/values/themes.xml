@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Aircasting" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/aircasting_dark_blue</item>
+    <style name="Theme.Aircasting" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/aircasting_blue_400</item>
+        <item name="colorPrimaryVariant">@color/aircasting_dark_blue</item>
+        <item name="colorOnPrimary">@color/aircasting_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/aircasting_blue_400</item>
+        <item name="colorSecondaryVariant">@color/aircasting_dark_blue</item>
+        <item name="colorOnSecondary">@color/aircasting_black_overlay</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 </resources>

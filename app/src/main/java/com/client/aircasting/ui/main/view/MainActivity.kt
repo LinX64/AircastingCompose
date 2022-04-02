@@ -3,11 +3,7 @@ package com.client.aircasting.ui.main.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -19,14 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.client.aircasting.R
-import com.client.aircasting.ui.main.viewmodel.MainViewModel
 import com.client.aircasting.ui.theme.AircastingComposeTheme
 import com.google.accompanist.pager.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,17 +53,15 @@ fun MainScreen() {
     )
     val pagerState = rememberPagerState()
 
-
     Scaffold(
         topBar = { TopBar() },
-        bottomBar = { BottomBar() }
-    ) {
-        Column {
-            Tabs(tabs = tabs, pagerState = pagerState)
-            TabsContent(tabs = tabs, pagerState = pagerState)
-
-        }
-    }
+        content = {
+            Column {
+                Tabs(tabs = tabs, pagerState = pagerState)
+                TabsContent(tabs = tabs, pagerState = pagerState)
+            }
+        },
+        bottomBar = { BottomBar() })
 }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
@@ -84,7 +75,7 @@ fun MainScreenPreview() {
 fun TopBar() {
     TopAppBar(
         elevation = 0.dp,
-        title = { Text(text = stringResource(R.string.app_name), fontSize = 18.sp) },
+        title = { Text(text = stringResource(R.string.title_dashboard), fontSize = 18.sp) },
         backgroundColor = Color.White,
         contentColor = Color(R.color.aircasting_dark_blue)
     )
@@ -94,6 +85,37 @@ fun TopBar() {
 @Composable
 fun TopBarPreview() {
     TopBar()
+}
+
+@Composable
+fun BottomBar() {
+    val selectedIndex = remember { mutableStateOf(0) }
+    BottomNavigation(backgroundColor = Color.White, elevation = 10.dp) {
+
+        BottomNavigationItem(icon = {
+            Icon(imageVector = Icons.Default.Home, "")
+        },
+            selected = (selectedIndex.value == 0),
+            onClick = {
+                selectedIndex.value = 0
+            })
+
+        BottomNavigationItem(icon = {
+            Icon(imageVector = Icons.Default.Favorite, "")
+        },
+            selected = (selectedIndex.value == 1),
+            onClick = {
+                selectedIndex.value = 1
+            })
+
+        BottomNavigationItem(icon = {
+            Icon(imageVector = Icons.Default.Person, "")
+        },
+            selected = (selectedIndex.value == 2),
+            onClick = {
+                selectedIndex.value = 2
+            })
+    }
 }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
@@ -162,33 +184,3 @@ fun TabsContentPreview() {
     TabsContent(tabs = tabs, pagerState = pagerState)
 }
 
-@Composable
-fun BottomBar() {
-    val selectedIndex = remember { mutableStateOf(0) }
-    BottomNavigation(backgroundColor = Color.White, elevation = 10.dp) {
-
-        BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Home, "")
-        },
-            selected = (selectedIndex.value == 0),
-            onClick = {
-                selectedIndex.value = 0
-            })
-
-        BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Favorite, "")
-        },
-            selected = (selectedIndex.value == 1),
-            onClick = {
-                selectedIndex.value = 1
-            })
-
-        BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Person, "")
-        },
-            selected = (selectedIndex.value == 2),
-            onClick = {
-                selectedIndex.value = 2
-            })
-    }
-}

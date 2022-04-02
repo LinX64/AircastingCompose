@@ -1,6 +1,10 @@
 package com.client.aircasting.ui.main.view
 
 import androidx.compose.runtime.Composable
+import com.client.aircasting.ui.main.view.tabs.FixedScreen
+import com.client.aircasting.ui.main.view.tabs.FollowingScreen
+import com.client.aircasting.ui.main.view.tabs.MobileActiveScreen
+import com.client.aircasting.ui.main.view.tabs.MobileDormantScreen
 
 typealias ComposableFun = @Composable () -> Unit
 
