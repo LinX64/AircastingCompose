@@ -48,7 +48,7 @@ fun MovieItem(movie: Movie, index: Int, selectedIndex: Int, onClick: (Int) -> Un
             .padding(8.dp, 4.dp)
             .fillMaxWidth()
             .clickable { onClick(index) }
-            .height(110.dp), shape = RoundedCornerShape(8.dp), elevation = 4.dp
+            .height(110.dp), shape = RoundedCornerShape(8.dp)
     ) {
         Surface(color = backgroundColor) {
 
