@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.main.view
+package com.client.aircasting.ui.navigation
 
 import androidx.compose.runtime.Composable
 import com.client.aircasting.ui.main.view.tabs.FixedScreen

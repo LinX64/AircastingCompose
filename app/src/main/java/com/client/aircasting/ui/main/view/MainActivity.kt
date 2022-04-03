@@ -3,7 +3,6 @@ package com.client.aircasting.ui.main.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -18,7 +17,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
+import com.client.aircasting.ui.intro.Welcome
+import com.client.aircasting.ui.navigation.NavRoutes
+import com.client.aircasting.ui.navigation.TabItem
 import com.client.aircasting.ui.theme.AircastingComposeTheme
 import com.google.accompanist.pager.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,40 +38,33 @@ class MainActivity : ComponentActivity() {
         setContent {
             AircastingComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    MainScreen()
+                    ComposeNavigation()
                 }
             }
         }
     }
 }
 
-
-@OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Composable
-fun MainScreen() {
-    val tabs = listOf(
-        TabItem.Following,
-        TabItem.Active,
-        TabItem.Dormant,
-        TabItem.Fixed
-    )
-    val pagerState = rememberPagerState()
+fun ComposeNavigation() {
+    val navController = rememberNavController()
 
-    Scaffold(
-        topBar = { TopBar() },
-        bottomBar = { BottomBar() }, content = {
-            Column {
-                Tabs(tabs = tabs, pagerState = pagerState)
-                TabsContent(tabs = tabs, pagerState = pagerState)
-            }
-        })
-}
+    NavHost(
+        navController = navController,
+        startDestination = NavRoutes.Home.route,
+    ) {
+        composable(NavRoutes.Home.route) {
+            Home(navController = navController)
+        }
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    MainScreen()
+        composable(NavRoutes.Welcome.route) {
+            Welcome(navController = navController)
+        }
+
+        composable(NavRoutes.Profile.route) {
+            Welcome(navController = navController)
+        }
+    }
 }
 
 @Composable
@@ -131,7 +129,7 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
         selectedTabIndex = pagerState.currentPage,
         backgroundColor = Color.White,
         contentColor = colorResource(id = R.color.aircasting_blue_400),
-                indicator = { tabPositions ->
+        indicator = { tabPositions ->
             TabRowDefaults.Indicator(
                 Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
             )
@@ -172,7 +170,6 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
         tabs[page].screen()
     }
 }
-
 
 @OptIn(ExperimentalPagerApi::class)
 @Preview(showBackground = true)
