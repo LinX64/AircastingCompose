@@ -65,7 +65,6 @@ fun GetStarted(navController: NavHostController) {
                     textAlign = TextAlign.Center
                 )
             }
-
         }
 
         Column(
