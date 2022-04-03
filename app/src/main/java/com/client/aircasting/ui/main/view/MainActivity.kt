@@ -22,7 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
-import com.client.aircasting.ui.intro.Intro
+import com.client.aircasting.ui.intro.Onboarding
 import com.client.aircasting.ui.navigation.NavRoutes
 import com.client.aircasting.ui.navigation.TabItem
 import com.client.aircasting.ui.theme.AircastingComposeTheme
@@ -51,10 +51,10 @@ fun ComposeNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.Intro.route,
+        startDestination = NavRoutes.Onboarding.route,
     ) {
-        composable(NavRoutes.Intro.route) {
-            Intro(navController = navController)
+        composable(NavRoutes.Onboarding.route) {
+            Onboarding(navController = navController)
         }
         composable(NavRoutes.Dashboard.route) {
             Dashboard()

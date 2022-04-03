@@ -14,7 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
+import com.client.aircasting.ui.navigation.NavRoutes
 
 @Composable
 fun FollowingScreen() {
@@ -43,7 +46,7 @@ fun FollowingScreen() {
         )
 
         Button(
-            onClick = { goToLetsStart() },
+            onClick = {  },
             modifier = Modifier
                 .padding(start = 20.dp, top = 30.dp, end = 20.dp)
                 .height(50.dp)
@@ -66,9 +69,10 @@ fun FollowingScreen() {
 @Preview(showBackground = true)
 @Composable
 fun FollowingScreenPreview() {
+    val navController = rememberNavController()
     FollowingScreen()
 }
 
-fun goToLetsStart() {
-    TODO("Not yet implemented")
+fun goToLetsStart(navController: NavHostController) {
+    navController.navigate(NavRoutes.LetsStart.route)
 }
