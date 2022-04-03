@@ -12,6 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -94,7 +95,7 @@ fun BottomBar() {
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_home_black_24dp),
                 ""
             )
-        }, selectedContentColor = Color(R.color.aircasting_dark_blue),
+        }, selectedContentColor = colorResource(id = R.color.aircasting_blue_400),
             selected = (selectedIndex.value == 0),
             onClick = {
                 selectedIndex.value = 0
@@ -129,8 +130,8 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
     ScrollableTabRow(
         selectedTabIndex = pagerState.currentPage,
         backgroundColor = Color.White,
-        contentColor = Color.Blue,
-        indicator = { tabPositions ->
+        contentColor = colorResource(id = R.color.aircasting_blue_400),
+                indicator = { tabPositions ->
             TabRowDefaults.Indicator(
                 Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
             )

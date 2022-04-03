@@ -3,7 +3,7 @@ package com.client.aircasting.ui.main.view.tabs
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +24,6 @@ fun FollowingScreen() {
             .fillMaxSize()
             .wrapContentSize(Alignment.Center)
     ) {
-
         Text(
             text = stringResource(id = R.string.dashboard_empty_header),
             fontSize = 24.sp,
@@ -46,7 +45,7 @@ fun FollowingScreen() {
         Button(
             onClick = { goToLetsStart() },
             modifier = Modifier
-                .padding(start = 20.dp, top = 20.dp, end = 20.dp)
+                .padding(start = 20.dp, top = 30.dp, end = 20.dp)
                 .height(50.dp)
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth(),
