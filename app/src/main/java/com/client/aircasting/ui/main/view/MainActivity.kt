@@ -3,6 +3,7 @@ package com.client.aircasting.ui.main.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -21,7 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
-import com.client.aircasting.ui.intro.Welcome
+import com.client.aircasting.ui.intro.Intro
 import com.client.aircasting.ui.navigation.NavRoutes
 import com.client.aircasting.ui.navigation.TabItem
 import com.client.aircasting.ui.theme.AircastingComposeTheme
@@ -48,21 +49,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ComposeNavigation() {
     val navController = rememberNavController()
-
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.Home.route,
+        startDestination = NavRoutes.Intro.route,
     ) {
-        composable(NavRoutes.Home.route) {
-            Home(navController = navController)
+        composable(NavRoutes.Intro.route) {
+            Intro(navController = navController)
         }
-
-        composable(NavRoutes.Welcome.route) {
-            Welcome(navController = navController)
-        }
-
-        composable(NavRoutes.Profile.route) {
-            Welcome(navController = navController)
+        composable(NavRoutes.Dashboard.route) {
+            Dashboard()
         }
     }
 }
@@ -71,9 +66,15 @@ fun ComposeNavigation() {
 fun TopBar() {
     TopAppBar(
         elevation = 0.dp,
-        title = { Text(text = stringResource(R.string.title_dashboard), fontSize = 18.sp) },
+        title = {
+            Text(
+                modifier = Modifier.padding(start = 10.dp, top = 20.dp, bottom = 10.dp),
+                text = stringResource(R.string.title_dashboard),
+                fontSize = 20.sp
+            )
+        },
         backgroundColor = Color.White,
-        contentColor = Color(R.color.aircasting_dark_blue)
+        contentColor = colorResource(id = R.color.aircasting_dark_blue)
     )
 }
 
