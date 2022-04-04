@@ -71,7 +71,9 @@ fun ExpandableCard(
             Row(
                 verticalAlignment = Alignment.Top
             ) {
-                Text(text = date)
+                Text(
+                    text = date, maxLines = 1
+                )
             }
 
             Row(
@@ -105,7 +107,7 @@ fun ExpandableCard(
             Row(
                 verticalAlignment = Alignment.Bottom
             ) {
-                Text(text = type)
+                Text(text = type, maxLines = 1)
             }
 
             Row(
@@ -113,7 +115,7 @@ fun ExpandableCard(
                     .padding(top = 10.dp),
                 verticalAlignment = Alignment.Bottom
             ) {
-                Text(text = lastMinute)
+                Text(text = lastMinute, maxLines = 1)
             }
 
 
