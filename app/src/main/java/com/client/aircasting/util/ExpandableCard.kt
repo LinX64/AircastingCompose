@@ -49,6 +49,7 @@ fun ExpandableCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(10.dp)
             .animateContentSize(
                 animationSpec = tween(
                     durationMillis = 300,
@@ -56,6 +57,7 @@ fun ExpandableCard(
                 )
             ),
         shape = shape,
+        elevation = 4.dp,
         onClick = {
             expandedState = !expandedState
         }
