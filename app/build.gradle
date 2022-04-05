@@ -60,6 +60,18 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
 
+    implementation 'com.jakewharton:process-phoenix:2.0.0'
+
+    // for Firebase Crashlytics and Test Lab
+    implementation platform('com.google.firebase:firebase-bom:28.2.0')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // for Google Places API
+    implementation('com.google.android.libraries.places:places:2.6.0')
+    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    implementation 'com.google.auto.value:auto-value-annotations:1.9'
+
     //Material Design
     implementation 'com.google.android.material:material:1.6.0-beta01'
 
@@ -76,11 +88,6 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-location:19.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
-
-    // for Google Places API
-    implementation('com.google.android.libraries.places:places:2.6.0')
-    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
-    implementation 'com.google.auto.value:auto-value-annotations:1.9'
 
     implementation "com.google.accompanist:accompanist-pager:0.23.1"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.23.1"
