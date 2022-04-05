@@ -9,9 +9,9 @@ import com.client.aircasting.ui.main.view.tabs.MobileDormantScreen
 typealias ComposableFun = @Composable () -> Unit
 
 sealed class TabItem(var title: String, var screen: ComposableFun) {
-    object Following : TabItem("FOLLOWING", { FollowingScreen() })
-    object Active : TabItem("MOBILE ACTIVE", { MobileActiveScreen() })
-    object Dormant : TabItem("MOBILE DORMANT", { MobileDormantScreen() })
-    object Fixed : TabItem("FIXED", { FixedScreen() })
+    object Following : TabItem("Following", { FollowingScreen() })
+    object Active : TabItem("Mobile Active", { MobileActiveScreen() })
+    object Dormant : TabItem("Mobile Dormant", { MobileDormantScreen() })
+    object Fixed : TabItem("Fixed", { FixedScreen() })
 
 }

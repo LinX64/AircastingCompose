@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,6 +23,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
+import com.client.aircasting.ui.auth.Login
+import com.client.aircasting.ui.auth.Register
 import com.client.aircasting.ui.intro.GetStarted
 import com.client.aircasting.ui.navigation.NavRoutes
 import com.client.aircasting.ui.navigation.TabItem
@@ -56,6 +59,27 @@ fun ComposeNavigation() {
         composable(NavRoutes.GetStarted.route) {
             GetStarted(navController = navController)
         }
+
+        //Slides
+        composable(NavRoutes.FirstSlide.route) {
+            GetStarted(navController = navController)
+        }
+        composable(NavRoutes.SecondSlide.route) {
+            GetStarted(navController = navController)
+        }
+        composable(NavRoutes.ThirdSlide.route) {
+            GetStarted(navController = navController)
+        }
+
+
+
+        composable(NavRoutes.Login.route) {
+            Login()
+        }
+        composable(NavRoutes.Register.route) {
+            Register()
+        }
+
         composable(NavRoutes.Dashboard.route) {
             Dashboard()
         }
@@ -68,9 +92,10 @@ fun TopBar() {
         elevation = 0.dp,
         title = {
             Text(
-                modifier = Modifier.padding(start = 10.dp, top = 20.dp, bottom = 10.dp),
+                modifier = Modifier.padding(start = 5.dp, top = 20.dp, bottom = 5.dp),
                 text = stringResource(R.string.title_dashboard),
-                fontSize = 20.sp
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp
             )
         },
         backgroundColor = Color.White,
@@ -129,6 +154,7 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
     ScrollableTabRow(
         selectedTabIndex = pagerState.currentPage,
         backgroundColor = Color.White,
+        edgePadding = 5.dp,
         contentColor = colorResource(id = R.color.aircasting_blue_400),
         indicator = { tabPositions ->
             TabRowDefaults.Indicator(
@@ -185,4 +211,5 @@ fun TabsContentPreview() {
     val pagerState = rememberPagerState()
     TabsContent(tabs = tabs, pagerState = pagerState)
 }
+
 
