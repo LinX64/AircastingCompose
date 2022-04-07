@@ -8,11 +8,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.client.aircasting.BuildConfig
-import com.google.firebase.crashlytics.FirebaseCrashlytics
+import javax.inject.Inject
 
-class ErrorHandler(private val mContext: Context): Handler(Looper.getMainLooper()) {
+class ErrorHandler @Inject constructor(private val mContext: Context): Handler(Looper.getMainLooper()) {
     private val TAG = "ErrorHandler"
-    private val crashlytics = FirebaseCrashlytics.getInstance()
+   // private val crashlytics = FirebaseCrashlytics.getInstance()
 
     override fun handleMessage(message: Message) {
         val exception = message.obj as BaseException
@@ -25,10 +25,10 @@ class ErrorHandler(private val mContext: Context): Handler(Looper.getMainLooper(
 
         if (!BuildConfig.DEBUG) {
             exception.messageToDisplay?.let {
-                crashlytics.log(it)
-                crashlytics.recordException(exception)
+               /* crashlytics.log(it)
+                crashlytics.recordException(exception)*/
             }
-            exception.cause?.let { crashlytics.recordException(it) }
+           /* exception.cause?.let { crashlytics.recordException(it) }*/
         }
     }
 
@@ -59,7 +59,7 @@ class ErrorHandler(private val mContext: Context): Handler(Looper.getMainLooper(
 
     fun registerUser(email: String?) {
         if (!BuildConfig.DEBUG) {
-            email?.let { crashlytics.setUserId(it) }
+            /*email?.let { crashlytics.setUserId(it) }*/
         }
     }
 }

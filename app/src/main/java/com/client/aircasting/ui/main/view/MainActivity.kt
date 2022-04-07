@@ -99,12 +99,6 @@ fun TopBar() {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun TopBarPreview() {
-    TopBar()
-}
-
 @Composable
 fun BottomBar() {
     val selectedIndex = remember { mutableStateOf(0) }
@@ -172,6 +166,20 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
+    HorizontalPager(state = pagerState, count = tabs.size) { page ->
+        tabs[page].screen()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TopBarPreview() {
+    TopBar()
+}
+
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
 @Preview(showBackground = true)
 @Composable
@@ -184,14 +192,6 @@ fun TabsPreview() {
     )
     val pagerState = rememberPagerState()
     Tabs(tabs = tabs, pagerState = pagerState)
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
-    HorizontalPager(state = pagerState, count = tabs.size) { page ->
-        tabs[page].screen()
-    }
 }
 
 @OptIn(ExperimentalPagerApi::class)
