@@ -23,8 +23,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
-import com.client.aircasting.ui.auth.Login
-import com.client.aircasting.ui.auth.Register
+import com.client.aircasting.ui.auth.view.login.Login
+import com.client.aircasting.ui.auth.view.register.Register
 import com.client.aircasting.ui.intro.GetStarted
 import com.client.aircasting.ui.navigation.NavRoutes
 import com.client.aircasting.ui.navigation.TabItem
@@ -54,10 +54,10 @@ fun ComposeNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.GetStarted.route,
+        startDestination = NavRoutes.Login.route,
     ) {
-        composable(NavRoutes.GetStarted.route) {
-            GetStarted(navController = navController)
+        composable(NavRoutes.Login.route) {
+            Login(navController)
         }
 
         //Slides
@@ -70,16 +70,12 @@ fun ComposeNavigation() {
         composable(NavRoutes.ThirdSlide.route) {
             GetStarted(navController = navController)
         }
-
-
-
         composable(NavRoutes.Login.route) {
-            Login()
+            Login(navController = navController)
         }
         composable(NavRoutes.Register.route) {
             Register()
         }
-
         composable(NavRoutes.Dashboard.route) {
             Dashboard()
         }

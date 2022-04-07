@@ -38,18 +38,16 @@ fun ExpandableCard(
     descriptionFontSize: TextUnit = MaterialTheme.typography.subtitle1.fontSize,
     descriptionFontWeight: FontWeight = FontWeight.Normal,
     descriptionMaxLines: Int = 4,
-    shape: CornerBasedShape = Shapes.medium,
-    padding: Dp = 12.dp
+    shape: CornerBasedShape = Shapes.medium
 ) {
     var expandedState by remember { mutableStateOf(false) }
     val rotationState by animateFloatAsState(
-        targetValue = if (expandedState) 180f else 150f
+        targetValue = if (expandedState) 250f else 150f
     )
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
             .animateContentSize(
                 animationSpec = tween(
                     durationMillis = 300,
@@ -57,7 +55,7 @@ fun ExpandableCard(
                 )
             ),
         shape = shape,
-        elevation = 4.dp,
+        elevation = 10.dp,
         onClick = {
             expandedState = !expandedState
         }
@@ -65,7 +63,6 @@ fun ExpandableCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(padding)
         ) {
 
             Row(

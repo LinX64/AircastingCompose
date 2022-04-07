@@ -1,12 +1,8 @@
 package com.client.aircasting.data.local
 
-import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.eventbus.EventBus
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
-import pl.llp.aircasting.events.LogoutEvent
-import pl.llp.aircasting.lib.Settings
+import com.client.aircasting.util.Settings
+import com.client.aircasting.util.events.LogoutEvent
+import org.greenrobot.eventbus.EventBus
 
 class LogoutService(private val mSettings: Settings) {
     fun perform(callback: (() -> Unit)? = null) {
@@ -19,11 +15,11 @@ class LogoutService(private val mSettings: Settings) {
 
     private fun clearDatabase() {
         Thread.sleep(1000)
-        runBlocking {
+        /*runBlocking {
             val query = GlobalScope.async(Dispatchers.IO) {
                 DatabaseProvider.get().clearAllTables()
             }
             query.await()
-        }
+        }*/
     }
 }
