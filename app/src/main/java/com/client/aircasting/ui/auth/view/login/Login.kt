@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.auth
+package com.client.aircasting.ui.auth.view.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -18,11 +19,20 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
+import com.client.aircasting.ui.auth.viewmodel.AuthViewModel
 
 @Composable
-fun Login() {
+fun Login(
+    navController: NavController,
+    authViewModel: AuthViewModel = hiltViewModel()
+) {
+    var profileName by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,12 +57,12 @@ fun Login() {
                 .fillMaxWidth()
                 .padding(start = 30.dp, top = 20.dp, end = 30.dp)
         ) {
-            var text by remember { mutableStateOf("") }
+
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = text,
+                value = profileName,
                 onValueChange = {
-                    text = it
+                    profileName = it
                 },
                 label = {
                     Text(
@@ -70,14 +80,13 @@ fun Login() {
                 .fillMaxWidth()
                 .padding(start = 30.dp, top = 20.dp, end = 30.dp)
         ) {
-            var text by remember { mutableStateOf("") }
             var showPassword by remember { mutableStateOf(false) }
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = text,
+                value = password,
                 onValueChange = {
-                    text = it
+                    password = it
                 },
                 label = {
                     Text(
@@ -113,7 +122,11 @@ fun Login() {
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = colorResource(id = R.color.aircasting_blue_400)
                 ),
-                onClick = {  }) {
+                onClick = {
+
+                    authViewModel.login(profileName, password)
+
+                }) {
                 Text(
                     text = stringResource(id = R.string.login_text_button),
                     color = colorResource(id = R.color.aircasting_white),
@@ -146,5 +159,5 @@ fun Login() {
 @Composable
 fun ShowLoginPreview() {
     val navController = rememberNavController()
-    Login()
+    Login(navController = navController)
 }

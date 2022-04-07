@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.auth
+package com.client.aircasting.ui.auth.view.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
