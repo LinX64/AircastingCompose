@@ -4,8 +4,9 @@ import android.app.Application
 import android.content.SharedPreferences
 import com.client.aircasting.data.local.LogoutService
 import com.jakewharton.processphoenix.ProcessPhoenix
+import javax.inject.Inject
 
-open class Settings(private val mApplication: Application) {
+open class Settings @Inject constructor(private val mApplication: Application) {
     private val PRIVATE_MODE = 0
     private val PREFERENCES_NAME = "preferences"
     private val EMAIL_KEY = "email"
