@@ -64,69 +64,63 @@ fun MobileActiveScreen() {
                 color = colorResource(id = R.color.aircasting_white)
             )
         }
+
+        BottomCardView()
     }
-    BottomCardView()
+}
+
+@Composable
+fun BottomCardView() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 100.dp)
+            .size(130.dp),
+        shape = RoundedCornerShape(5.dp),
+        elevation = 5.dp,
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp)
+        ) {
+
+            Image(
+                painter = painterResource(id = R.drawable.didyouknowimage),
+                ""
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                Text(
+                    text = stringResource(id = R.string.did_you_know),
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Start,
+                    fontSize = 17.sp,
+                    modifier = Modifier
+                        .padding(start = 10.dp)
+                )
+
+                Spacer(
+                    modifier = Modifier.height(10.dp)
+                )
+
+                Text(
+                    text = stringResource(id = R.string.did_you_know_box_tip_1),
+                    textAlign = TextAlign.Justify,
+                    modifier = Modifier
+                        .padding(start = 10.dp, end = 10.dp)
+                )
+
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MobileActiveScreenPreview() {
     MobileActiveScreen()
-}
-
-@Composable
-fun BottomCardView() {
-    Column(
-        modifier = Modifier
-            .padding(start = 24.dp, bottom = 60.dp, end = 24.dp)
-            .fillMaxSize()
-            .wrapContentSize(Alignment.BottomCenter)
-    ) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(130.dp),
-            shape = RoundedCornerShape(5.dp),
-            elevation = 5.dp,
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp)
-            ) {
-
-                Image(
-                    painter = painterResource(id = R.drawable.didyouknowimage),
-                    ""
-                )
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.did_you_know),
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Start,
-                        fontSize = 17.sp,
-                        modifier = Modifier
-                            .padding(start = 10.dp)
-                    )
-
-                    Spacer(
-                        modifier = Modifier.height(10.dp)
-                    )
-
-                    Text(
-                        text = stringResource(id = R.string.did_you_know_box_tip_1),
-                        textAlign = TextAlign.Start,
-                        modifier = Modifier
-                            .padding(start = 10.dp, end = 10.dp)
-                    )
-
-                }
-            }
-        }
-
-    }
 }
