@@ -1,5 +1,10 @@
 package com.client.aircasting.ui.navigation
 
+const val INTRO_GRAPH_ROUTE = "intro"
+const val ROOT_GRAPH_ROUTE = "root"
+const val HOME_GRAPH_ROUTE = "home"
+const val AUTH_GRAPH_ROUTE = "auth"
+
 sealed class NavRoutes(val route: String) {
     //The beginning of the app
     object GetStarted : NavRoutes("get_started")
