@@ -2,11 +2,12 @@ package com.client.aircasting.ui.intro.slides
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.ui.auth.view.register.Register
 
 @Composable
-fun IntroSlides() {
+fun FirstSlide(navController: NavController) {
 
 
 
@@ -15,7 +16,7 @@ fun IntroSlides() {
 
 @Preview
 @Composable
-fun ShowRegisterPreview() {
+fun ShowFirstSlidePreview() {
     val navController = rememberNavController()
-    Register()
+    Register(navController = navController)
 }

@@ -7,10 +7,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun Register() {
+fun Register(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -25,5 +26,5 @@ fun Register() {
 @Composable
 fun ShowRegisterPreview() {
     val navController = rememberNavController()
-    Register()
+    Register(navController = navController)
 }
