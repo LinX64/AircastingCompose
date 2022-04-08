@@ -25,43 +25,49 @@ fun FollowingScreen() {
         modifier = Modifier
             .padding(start = 24.dp, end = 24.dp)
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
     ) {
-        Text(
-            text = stringResource(id = R.string.dashboard_empty_header),
-            fontSize = 24.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            fontWeight = FontWeight.Bold,
-            color = colorResource(id = R.color.aircasting_dark_blue),
-            textAlign = TextAlign.Center
-        )
 
-        Text(
-            text = stringResource(id = R.string.dashboard_empty_text),
-            fontSize = 18.sp,
+        Column(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 10.dp),
-            textAlign = TextAlign.Center
-        )
-
-        Button(
-            onClick = {  },
-            modifier = Modifier
-                .padding(start = 20.dp, top = 30.dp, end = 20.dp)
-                .height(50.dp)
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth(),
-            colors = ButtonDefaults.textButtonColors(
-                backgroundColor = colorResource(id = R.color.aircasting_blue_400)
-            )
+                .fillMaxSize()
+                .wrapContentSize(Alignment.Center)
         ) {
             Text(
-                text = stringResource(id = R.string.record_new_session),
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
-                color = colorResource(id = R.color.aircasting_white)
+                text = stringResource(id = R.string.dashboard_empty_header),
+                fontSize = 24.sp,
+                modifier = Modifier.fillMaxWidth(),
+                fontWeight = FontWeight.Bold,
+                color = colorResource(id = R.color.aircasting_dark_blue),
+                textAlign = TextAlign.Center
             )
+
+            Text(
+                text = stringResource(id = R.string.dashboard_empty_text),
+                fontSize = 18.sp,
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+
+            Button(
+                onClick = { },
+                modifier = Modifier
+                    .padding(start = 20.dp, top = 30.dp, end = 20.dp)
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.textButtonColors(
+                    backgroundColor = colorResource(id = R.color.aircasting_blue_400)
+                )
+            ) {
+                Text(
+                    text = stringResource(id = R.string.record_new_session),
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center,
+                    color = colorResource(id = R.color.aircasting_white)
+                )
+            }
+
         }
     }
 }
