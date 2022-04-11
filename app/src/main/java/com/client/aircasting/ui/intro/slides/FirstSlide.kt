@@ -10,8 +10,6 @@ import com.client.aircasting.ui.auth.view.register.Register
 fun FirstSlide(navController: NavController) {
 
 
-
-
 }
 
 @Preview

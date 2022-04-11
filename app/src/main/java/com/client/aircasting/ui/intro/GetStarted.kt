@@ -1,6 +1,7 @@
 package com.client.aircasting.ui.intro
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
@@ -23,7 +24,11 @@ import com.client.aircasting.ui.navigation.NavRoutes
 
 @Composable
 fun GetStarted(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colorResource(id = R.color.aircasting_white))
+    ) {
 
         Box(
             modifier = Modifier
@@ -91,7 +96,7 @@ fun GetStarted(navController: NavHostController) {
 }
 
 fun goToDashboard(navController: NavHostController) {
-    navController.navigate(NavRoutes.Dashboard.route)
+    navController.navigate(NavRoutes.FirstSlide.route)
 }
 
 @Preview(showBackground = true)
