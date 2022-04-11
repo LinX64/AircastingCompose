@@ -5,11 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import com.client.aircasting.ui.theme.*
-import com.example.ui.theme.AppTypography
 
 private val LightThemeColors = lightColorScheme(
-
 	primary = md_theme_light_primary,
 	onPrimary = md_theme_light_onPrimary,
 	primaryContainer = md_theme_light_primaryContainer,
