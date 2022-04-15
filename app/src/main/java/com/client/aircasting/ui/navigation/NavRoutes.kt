@@ -9,10 +9,11 @@ sealed class NavRoutes(val route: String) {
     //The beginning of the app
     object GetStarted : NavRoutes("get_started")
 
-    //Slides
-    object FirstSlide : NavRoutes("first_slide")
-    object SecondSlide : NavRoutes("second_slide")
-    object ThirdSlide : NavRoutes("third_slide")
+    //Steps
+    object FirstStep : NavRoutes("first_step")
+    object SecondStep : NavRoutes("second_step")
+    object ThirdStep : NavRoutes("third_step")
+    object FourthStep : NavRoutes("fourth_step")
 
     //Auth
     object Login : NavRoutes("login")
