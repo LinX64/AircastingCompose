@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
@@ -30,51 +31,52 @@ fun GetStarted(navController: NavHostController) {
             .background(colorResource(id = R.color.aircasting_white))
     ) {
 
-        Box(
+        Image(
+            painter = painterResource(id = R.drawable.onboarding_picture_1),
+            "",
+            modifier = Modifier.fillMaxWidth(),
+            contentScale = ContentScale.Crop
+        )
+
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(start = 32.dp, end = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Image(
-                painter = painterResource(id = R.drawable.onboarding_picture_1),
+                painter = painterResource(id = R.drawable.ic_icon_aircasting_small),
                 "",
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.Crop
-
+                modifier = Modifier
+                    .align(Alignment.Start)
+                    .padding(start = 60.dp, end = 60.dp)
+                    .height(24.dp)
+                    .width(24.dp)
             )
-        }
 
-        Box(
-            modifier = Modifier
-                .padding(start = 24.dp, end = 24.dp),
-            contentAlignment = Alignment.Center
-        ) {
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = MaterialTheme.typography.h4,
+                fontWeight = FontWeight.Bold,
+                color = colorResource(id = R.color.aircasting_blue_400),
+                textAlign = TextAlign.Center
+            )
 
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+            Spacer(modifier = Modifier.size(10.dp))
 
-                Text(
-                    text = stringResource(id = R.string.app_name),
-                    style = MaterialTheme.typography.h4,
-                    fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.aircasting_blue_400),
-                    textAlign = TextAlign.Center
-                )
-
-                Spacer(modifier = Modifier.size(10.dp))
-
-                Text(
-                    text = stringResource(id = R.string.onboarding_page1_description),
-                    style = MaterialTheme.typography.body1,
-                    textAlign = TextAlign.Center
-                )
-            }
+            Text(
+                text = stringResource(id = R.string.onboarding_page1_description),
+                style = MaterialTheme.typography.body1,
+                textAlign = TextAlign.Center,
+                color = colorResource(id = R.color.aircasting_grey_700),
+                lineHeight = 20.sp
+            )
         }
 
         Column(
             modifier = Modifier
-                .padding(start = 24.dp, bottom = 24.dp, end = 24.dp)
+                .padding(start = 32.dp, bottom = 24.dp, end = 32.dp)
                 .fillMaxHeight(),
             verticalArrangement = Arrangement.Bottom
         ) {
