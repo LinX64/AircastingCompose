@@ -76,7 +76,7 @@ fun AircastingTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        typography = AppTypography,
+        typography = Typography,
         content = content
     )
 }
