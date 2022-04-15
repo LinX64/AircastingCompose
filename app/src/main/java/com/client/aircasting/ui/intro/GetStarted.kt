@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -48,11 +49,12 @@ fun GetStarted(navController: NavHostController) {
             Image(
                 painter = painterResource(id = R.drawable.ic_icon_aircasting_small),
                 "",
+                colorFilter = ColorFilter.tint(color = colorResource(id = R.color.aircasting_blue_400)),
                 modifier = Modifier
                     .align(Alignment.Start)
-                    .padding(start = 60.dp, end = 60.dp)
+                    .padding(start = 50.dp, end = 50.dp)
                     .height(24.dp)
-                    .width(24.dp)
+                    .width(24.dp),
             )
 
             Text(
@@ -76,7 +78,7 @@ fun GetStarted(navController: NavHostController) {
 
         Column(
             modifier = Modifier
-                .padding(start = 32.dp, bottom = 24.dp, end = 32.dp)
+                .padding(start = 32.dp, bottom = 32.dp, end = 32.dp)
                 .fillMaxHeight(),
             verticalArrangement = Arrangement.Bottom
         ) {
@@ -98,7 +100,7 @@ fun GetStarted(navController: NavHostController) {
 }
 
 fun goToDashboard(navController: NavHostController) {
-    navController.navigate(NavRoutes.FirstSlide.route)
+    navController.navigate(NavRoutes.FirstStep.route)
 }
 
 @Preview(showBackground = true)
