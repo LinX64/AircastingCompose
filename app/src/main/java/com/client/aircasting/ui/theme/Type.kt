@@ -21,5 +21,13 @@ val Typography = Typography(
     displayMedium = TextStyle(
         fontFamily = Moderate,
         fontWeight = FontWeight.Normal,
+    ),
+    headlineLarge = TextStyle(
+        fontFamily = Moderate,
+        fontWeight = FontWeight.Bold,
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = Moderate,
+        fontWeight = FontWeight.Medium
     )
 )
