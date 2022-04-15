@@ -5,9 +5,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.client.aircasting.ui.intro.GetStarted
-import com.client.aircasting.ui.intro.slides.FirstSlide
-import com.client.aircasting.ui.intro.slides.SecondSlide
-import com.client.aircasting.ui.intro.slides.ThirdSlide
+import com.client.aircasting.ui.intro.onboarding.FirstStep
+import com.client.aircasting.ui.intro.onboarding.SecondStep
+import com.client.aircasting.ui.intro.onboarding.ThirdStep
 import com.client.aircasting.ui.navigation.INTRO_GRAPH_ROUTE
 import com.client.aircasting.ui.navigation.NavRoutes
 
@@ -21,14 +21,14 @@ fun NavGraphBuilder.introNavGraph(
         composable(NavRoutes.GetStarted.route) {
             GetStarted(navController = navController)
         }
-        composable(NavRoutes.FirstSlide.route) {
-            FirstSlide(navController = navController)
+        composable(NavRoutes.FirstStep.route) {
+            FirstStep(navController = navController)
         }
-        composable(NavRoutes.SecondSlide.route) {
-            SecondSlide(navController = navController)
+        composable(NavRoutes.SecondStep.route) {
+            SecondStep(navController = navController)
         }
-        composable(NavRoutes.ThirdSlide.route) {
-            ThirdSlide(navController = navController)
+        composable(NavRoutes.ThirdStep.route) {
+            ThirdStep(navController = navController)
         }
     }
 }
