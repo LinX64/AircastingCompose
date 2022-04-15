@@ -1,15 +1,12 @@
-package com.client.aircasting.ui.intro.slides
+package com.client.aircasting.ui.intro.onboarding
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.client.aircasting.ui.auth.view.register.Register
 
 @Composable
-fun ThirdSlide(navController: NavController) {
-
-
+fun ThirdStep(navController: NavController) {
 
 
 }
@@ -18,5 +15,5 @@ fun ThirdSlide(navController: NavController) {
 @Composable
 fun ShowThirdSlidePreview() {
     val navController = rememberNavController()
-    Register(navController = navController)
+    ThirdStep(navController = navController)
 }
