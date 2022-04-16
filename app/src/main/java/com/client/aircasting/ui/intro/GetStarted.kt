@@ -49,7 +49,7 @@ fun GetStarted(navController: NavHostController) {
             Image(
                 painter = painterResource(id = R.drawable.ic_icon_aircasting_small),
                 "",
-                colorFilter = ColorFilter.tint(color = colorResource(id = R.color.aircasting_blue_400)),
+                colorFilter = ColorFilter.tint(color = colorResource(R.color.aircasting_blue_400)),
                 modifier = Modifier
                     .align(Alignment.Start)
                     .padding(start = 50.dp, end = 50.dp)
@@ -65,14 +65,14 @@ fun GetStarted(navController: NavHostController) {
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.size(10.dp))
+            Spacer(modifier = Modifier.size(20.dp))
 
             Text(
                 text = stringResource(id = R.string.onboarding_page1_description),
                 style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Center,
                 color = colorResource(id = R.color.aircasting_grey_700),
-                lineHeight = 20.sp
+                lineHeight = 28.sp
             )
         }
 

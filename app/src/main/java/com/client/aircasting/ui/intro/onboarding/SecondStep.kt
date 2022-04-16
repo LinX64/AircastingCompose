@@ -3,13 +3,12 @@ package com.client.aircasting.ui.intro.onboarding
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TextButton
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -30,6 +29,19 @@ fun SecondStep(navController: NavHostController) {
             .fillMaxSize()
             .background(colorResource(id = R.color.aircasting_white))
     ) {
+        Spacer(modifier = Modifier.height(20.dp))
+
+        LinearProgressIndicator(
+            progress = 0.40f,
+            modifier = Modifier
+                .height(8.dp)
+                .padding(start = 34.dp, end = 34.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .fillMaxWidth(),
+            color = colorResource(id = R.color.aircasting_blue_400)
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         Image(
             painter = painterResource(id = R.drawable.airbeam_in_hand),
@@ -40,7 +52,7 @@ fun SecondStep(navController: NavHostController) {
             contentScale = ContentScale.None
         )
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Column(
             modifier = Modifier
@@ -55,7 +67,7 @@ fun SecondStep(navController: NavHostController) {
                 color = colorResource(id = R.color.aircasting_green)
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Text(
                 text = stringResource(R.string.onboarding_page3_description),
@@ -64,7 +76,7 @@ fun SecondStep(navController: NavHostController) {
                 lineHeight = 20.sp
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Button(
                 modifier = Modifier
