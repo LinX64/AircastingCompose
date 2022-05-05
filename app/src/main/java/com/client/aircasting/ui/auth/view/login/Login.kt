@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,11 +32,14 @@ fun Login(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 30.dp, end = 30.dp)
+                .padding(
+                    start = dimensionResource(R.dimen.keyline_8),
+                    end = dimensionResource(R.dimen.keyline_8)
+                )
         ) {
             Text(
                 text = stringResource(id = R.string.login_header),
-                modifier = Modifier.padding(top = 40.dp),
+                modifier = Modifier.padding(top = dimensionResource(R.dimen.keyline_10)),
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h5,
                 color = colorResource(id = R.color.aircasting_blue_400)
@@ -43,16 +47,17 @@ fun Login(navController: NavController) {
 
             Text(
                 text = stringResource(id = R.string.login_description),
-                modifier = Modifier.padding(top = 20.dp)
+                modifier = Modifier.padding(top = dimensionResource(R.dimen.keyline_5)),
+                color = colorResource(id = R.color.aircasting_grey_700)
             )
 
             TextFields()
 
             Button(modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 30.dp)
+                .padding(top = dimensionResource(R.dimen.keyline_8))
                 .height(50.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.aircasting_blue_400)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.aircasting_blue_400)),
                 onClick = { // todo
 
                 }) {
@@ -63,12 +68,12 @@ fun Login(navController: NavController) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 20.dp),
+                    .padding(top = dimensionResource(R.dimen.keyline_5)),
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Text(
@@ -79,18 +84,22 @@ fun Login(navController: NavController) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_10)))
 
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = stringResource(id = R.string.create_account_prompt),
-                    style = MaterialTheme.typography.body1
+                    style = MaterialTheme.typography.body1,
+                    color = colorResource(id = R.color.aircasting_grey_700)
                 )
 
                 Text(
                     text = stringResource(id = R.string.create_account_text_button),
                     style = MaterialTheme.typography.body1,
-                    modifier = Modifier.padding(start = 10.dp, end = 30.dp),
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.keyline_3),
+                        end = dimensionResource(R.dimen.keyline_8)
+                    ),
                     color = colorResource(id = R.color.aircasting_blue_400),
                     fontWeight = FontWeight.Bold
                 )
