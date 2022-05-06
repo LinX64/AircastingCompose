@@ -3,10 +3,10 @@ package com.client.aircasting.ui.auth.view.register
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
@@ -19,6 +19,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
+import com.client.aircasting.ui.intro.goToDashboard
+import com.client.aircasting.ui.intro.onboarding.goToRegister
 import com.client.aircasting.ui.navigation.NavRoutes
 
 @Composable
@@ -63,8 +65,33 @@ fun Register(navController: NavHostController) {
             style = MaterialTheme.typography.body1,
         )
 
+        RegisterTextFields()
+
+        Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.keyline_3)))
+
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .padding(end = dimensionResource(R.dimen.keyline_5))) {
+
+            Text(
+                text = stringResource(id = R.string.login_prompt),
+                color = colorResource(id = R.color.aircasting_grey_700),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.Center)
+            )
+
+            Text(
+                text = stringResource(id = R.string.login_text_button),
+                color = colorResource(id = R.color.aircasting_blue_400),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+            )
+        }
+
     }
 }
+
 
 private fun goToLogin(navController: NavController) {
     navController.navigate(NavRoutes.Login.route)

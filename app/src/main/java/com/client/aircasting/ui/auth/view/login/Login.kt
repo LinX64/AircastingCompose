@@ -15,11 +15,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
-import com.client.aircasting.ui.auth.viewmodel.AuthViewModel
 
 @Composable
 fun Login(navController: NavController) {
@@ -51,7 +49,7 @@ fun Login(navController: NavController) {
                 color = colorResource(id = R.color.aircasting_grey_700)
             )
 
-            TextFields()
+            LoginTextFields()
 
             Button(modifier = Modifier
                 .fillMaxWidth()
@@ -106,13 +104,6 @@ fun Login(navController: NavController) {
             }
         }
     }
-}
-
-
-@Composable
-fun LogicAction(profileName: String, password: String) {
-    val authViewModel: AuthViewModel = hiltViewModel()
-    authViewModel.login(profileName, password)
 }
 
 @Preview

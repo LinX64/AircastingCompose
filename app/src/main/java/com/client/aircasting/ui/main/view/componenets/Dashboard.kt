@@ -47,7 +47,8 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
 
     ScrollableTabRow(
         selectedTabIndex = pagerState.currentPage,
-        edgePadding = 5.dp){
+        edgePadding = 5.dp
+    ) {
 
         tabs.forEachIndexed { index, tab ->
             Tab(
@@ -71,7 +72,11 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
 }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPagerApi::class)
-@Preview(showBackground = true)
+@Preview(
+    showSystemUi = true,
+    showBackground = true
+)
+
 @Composable
 fun MainScreenPreview() {
     val navController = rememberNavController()

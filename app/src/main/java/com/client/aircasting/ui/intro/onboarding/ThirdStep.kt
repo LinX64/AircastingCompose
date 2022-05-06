@@ -3,15 +3,14 @@ package com.client.aircasting.ui.intro.onboarding
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,11 +40,14 @@ fun ThirdStep(navController: NavHostController) {
             color = colorResource(id = R.color.aircasting_blue_400)
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
-
         Column(
             modifier = Modifier
-                .padding(start = 34.dp, end = 34.dp),
+                .fillMaxHeight()
+                .padding(
+                    start = dimensionResource(R.dimen.keyline_8),
+                    end = dimensionResource(R.dimen.keyline_8),
+                    bottom = dimensionResource(R.dimen.keyline_8)
+                ),
             verticalArrangement = Arrangement.Bottom
         ) {
 
@@ -55,16 +57,15 @@ fun ThirdStep(navController: NavHostController) {
                 color = colorResource(id = R.color.aircasting_blue_400)
             )
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
             Text(
                 text = stringResource(R.string.onboarding_page4_description),
-                style = MaterialTheme.typography.body1,
-                color = colorResource(id = R.color.aircasting_grey_700),
-                lineHeight = 20.sp
+                style = MaterialTheme.typography.body1.merge(LocalTextStyle.current.copy(lineHeight = 28.sp)),
+                color = colorResource(id = R.color.aircasting_grey_700)
             )
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_10)))
 
             Button(
                 modifier = Modifier
@@ -79,6 +80,20 @@ fun ThirdStep(navController: NavHostController) {
                     fontWeight = FontWeight.Bold
                 )
             }
+
+            Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.keyline_1)))
+
+            TextButton(modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+                onClick = { /*TODO*/ }) {
+                Text(
+                    text = stringResource(id = R.string.learn_more_button_onboarding),
+                    color = colorResource(id = R.color.aircasting_blue_400),
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
         }
 
     }

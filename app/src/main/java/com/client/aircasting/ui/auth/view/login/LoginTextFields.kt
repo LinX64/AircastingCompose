@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.client.aircasting.R
 
 @Composable
-fun TextFields() {
+fun LoginTextFields() {
     var profileName by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -77,5 +77,5 @@ fun TextFields() {
 @Preview
 @Composable
 fun ShowTextFieldsPreview() {
-    TextFields()
+    LoginTextFields()
 }

@@ -32,12 +32,17 @@ fun GetStarted(navController: NavHostController) {
             .background(colorResource(id = R.color.aircasting_white))
     ) {
 
-        Image(
-            painter = painterResource(id = R.drawable.onboarding_picture_1),
-            "",
-            modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.Crop
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.onboarding_picture_1),
+                "",
+                modifier = Modifier.fillMaxWidth(),
+                contentScale = ContentScale.Crop
+            )
+        }
 
         Column(
             modifier = Modifier
@@ -52,7 +57,7 @@ fun GetStarted(navController: NavHostController) {
                 colorFilter = ColorFilter.tint(color = colorResource(R.color.aircasting_blue_400)),
                 modifier = Modifier
                     .align(Alignment.Start)
-                    .padding(start = 50.dp, end = 50.dp)
+                    .padding(start = 60.dp, end = 50.dp)
                     .height(24.dp)
                     .width(24.dp),
             )
@@ -75,6 +80,8 @@ fun GetStarted(navController: NavHostController) {
                 lineHeight = 28.sp
             )
         }
+
+        Spacer(modifier = Modifier.size(20.dp))
 
         Column(
             modifier = Modifier
@@ -105,7 +112,7 @@ fun goToDashboard(navController: NavHostController) {
 
 @Preview(showBackground = true)
 @Composable
-fun ShowWelcomePreview() {
+fun ShowGetStartedPreview() {
     val navController = rememberNavController()
     GetStarted(navController = navController)
 }
