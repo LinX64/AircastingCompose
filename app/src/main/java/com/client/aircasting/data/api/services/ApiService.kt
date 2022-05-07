@@ -11,10 +11,6 @@ interface ApiService {
     /* Auth operations */
     @GET(Constants.urlLogin)
     suspend fun login(): Response<UserResponse>
-
-    //TODO for sessions after login
-    @GET(Constants.urlGetMovies)
-    suspend fun getSessions(): List<Movie>
 }
 
 
