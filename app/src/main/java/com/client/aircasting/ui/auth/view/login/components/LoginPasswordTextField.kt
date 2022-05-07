@@ -1,9 +1,9 @@
 package com.client.aircasting.ui.auth.view.login.components
 
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardActionScope
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -16,35 +16,20 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.client.aircasting.R
 
 @Composable
-fun LoginTextFields() {
-    var profileName by rememberSaveable { mutableStateOf("") }
+fun LoginPasswordTextField(
+    textValue: String,
+    onValueChange: (String) -> Unit,
+    onClickButton: () -> Unit
+) {
     var password by rememberSaveable { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
-
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 20.dp),
-        value = profileName,
-        onValueChange = {
-            profileName = it
-        },
-        label = {
-            Text(
-                text = stringResource(id = R.string.profile_name_hint),
-            )
-        }
-    )
-
-    Spacer(modifier = Modifier.height(10.dp))
 
     OutlinedTextField(
         modifier = Modifier
@@ -72,10 +57,4 @@ fun LoginTextFields() {
                 )
             }
         })
-}
-
-@Preview
-@Composable
-fun ShowTextFieldsPreview() {
-    LoginTextFields()
 }

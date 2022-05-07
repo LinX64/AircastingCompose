@@ -6,22 +6,36 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
-import com.client.aircasting.ui.auth.view.login.components.LoginTextFields
+import com.client.aircasting.ui.auth.view.login.components.*
+import com.client.aircasting.ui.auth.viewmodel.AuthViewModel
 
 @Composable
-fun Login(navController: NavController) {
+fun Login(
+    navController: NavController
+) {
+    var profileName by rememberSaveable { mutableStateOf(value = "") }
+    var password by rememberSaveable { mutableStateOf(value = "") }
+
+    val isValidate by derivedStateOf { profileName.isNotBlank() && password.isNotBlank() }
+    val focusManager = LocalFocusManager.current
+
+    val viewModel: AuthViewModel = viewModel()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -36,29 +50,31 @@ fun Login(navController: NavController) {
                     end = dimensionResource(R.dimen.keyline_8)
                 )
         ) {
-            Text(
-                text = stringResource(id = R.string.login_header),
-                modifier = Modifier.padding(top = dimensionResource(R.dimen.keyline_10)),
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.h5,
-                color = colorResource(id = R.color.aircasting_blue_400)
+
+            TextsLogin()
+
+            LoginEmailTextField(
+                textValue = profileName,
+                onValueChange = { profileName = it },
+                onClickButton = { profileName = "" },
+                onNext = { focusManager.moveFocus(FocusDirection.Down) }
             )
 
-            Text(
-                text = stringResource(id = R.string.login_description),
-                modifier = Modifier.padding(top = dimensionResource(R.dimen.keyline_5)),
-                color = colorResource(id = R.color.aircasting_grey_700)
-            )
+            Spacer(modifier = Modifier.height(10.dp))
 
-            LoginTextFields()
+            LoginPasswordTextField(
+                textValue = password,
+                onValueChange = { password = it },
+                onClickButton = { password = "" }
+            )
 
             Button(modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = dimensionResource(R.dimen.keyline_8))
                 .height(50.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.aircasting_blue_400)),
-                onClick = { // todo
-
+                onClick = {
+                    viewModel.login(profileName, password)
                 }) {
                 Text(
                     text = stringResource(id = R.string.login_text_button),
@@ -69,42 +85,15 @@ fun Login(navController: NavController) {
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = dimensionResource(R.dimen.keyline_5)),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                Text(
-                    text = stringResource(id = R.string.forgot_your_password),
-                    color = colorResource(
-                        id = R.color.aircasting_blue_400
-                    ), style = MaterialTheme.typography.body1
-                )
-            }
+            BoxText()
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = stringResource(id = R.string.create_account_prompt),
-                    style = MaterialTheme.typography.body1,
-                    color = colorResource(id = R.color.aircasting_grey_700)
-                )
-
-                Text(
-                    text = stringResource(id = R.string.create_account_text_button),
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier.padding(
-                        start = dimensionResource(R.dimen.keyline_3),
-                        end = dimensionResource(R.dimen.keyline_8)
-                    ),
-                    color = colorResource(id = R.color.aircasting_blue_400),
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            LastLoginText()
         }
     }
+
+    //ProgressBarLoading(isLoading = loadingProgressBar)
 }
 
 @Preview
