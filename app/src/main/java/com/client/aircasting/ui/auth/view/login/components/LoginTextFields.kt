@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.auth.view.login
+package com.client.aircasting.ui.auth.view.login.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth

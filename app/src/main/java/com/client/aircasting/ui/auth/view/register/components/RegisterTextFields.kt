@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.auth.view.register
+package com.client.aircasting.ui.auth.view.register.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -20,13 +20,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.client.aircasting.R
-import com.client.aircasting.ui.auth.view.login.LoginTextFields
 
 @Composable
 fun RegisterTextFields() {
-    var username by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var profileName by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-    var confirmPassword by rememberSaveable { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
     Column(
@@ -41,13 +40,13 @@ fun RegisterTextFields() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp),
-            value = username,
+            value = email,
             onValueChange = {
-                username = it
+                email = it
             },
             label = {
                 Text(
-                    text = stringResource(id = R.string.username),
+                    text = stringResource(id = R.string.email_hint),
                 )
             }
         )
@@ -57,28 +56,14 @@ fun RegisterTextFields() {
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = password,
+            value = profileName,
             onValueChange = {
-                password = it
+                profileName = it
             },
             label = {
                 Text(
-                    text = stringResource(id = R.string.password_hint),
+                    text = stringResource(id = R.string.profile_name_hint),
                 )
-            },
-            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            trailingIcon = {
-                IconButton(onClick = {
-                    showPassword = !showPassword
-                }) {
-                    Icon(
-                        imageVector = if (showPassword)
-                            Icons.Filled.Visibility
-                        else
-                            Icons.Filled.VisibilityOff, ""
-                    )
-                }
             })
 
         Spacer(modifier = Modifier.height(10.dp))

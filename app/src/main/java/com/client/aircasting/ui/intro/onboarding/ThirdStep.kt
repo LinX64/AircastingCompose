@@ -72,7 +72,7 @@ fun ThirdStep(navController: NavHostController) {
                     .fillMaxWidth()
                     .height(50.dp),
                 onClick = { goToRegister(navController) },
-                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.aircasting_green))
+                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.aircasting_blue_400))
             ) {
                 Text(
                     text = stringResource(id = R.string.accept_button_onboarding),

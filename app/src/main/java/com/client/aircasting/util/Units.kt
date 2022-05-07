@@ -79,7 +79,10 @@ inline val Number.dh: Dp
  */
 @OptIn(ExperimentalUnitApi::class)
 inline val Number.sw: TextUnit
-    get() = TextUnit((ScaleFactor * this.toFloat() * Math.min(DeviceWidth, DeviceHeight)).PxToSp, TextUnitType.Sp)
+    get() = TextUnit(
+        (ScaleFactor * this.toFloat() * Math.min(DeviceWidth, DeviceHeight)).PxToSp,
+        TextUnitType.Sp
+    )
 
 
 /**
@@ -88,4 +91,7 @@ inline val Number.sw: TextUnit
  */
 @OptIn(ExperimentalUnitApi::class)
 inline val Number.sh: TextUnit
-    get() = TextUnit((ScaleFactor * this.toFloat() * Math.max(DeviceWidth, DeviceHeight)).PxToSp, TextUnitType.Sp)
+    get() = TextUnit(
+        (ScaleFactor * this.toFloat() * Math.max(DeviceWidth, DeviceHeight)).PxToSp,
+        TextUnitType.Sp
+    )

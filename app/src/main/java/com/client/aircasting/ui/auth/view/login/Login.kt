@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
+import com.client.aircasting.ui.auth.view.login.components.LoginTextFields
 
 @Composable
 fun Login(navController: NavController) {
@@ -82,7 +83,7 @@ fun Login(navController: NavController) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_10)))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(
