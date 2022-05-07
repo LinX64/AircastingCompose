@@ -40,7 +40,7 @@ fun Register(navController: NavHostController) {
             .background(color = MaterialTheme.colors.background)
     ) {
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_10)))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
         LinearProgressIndicator(
             progress = 0.90f,
