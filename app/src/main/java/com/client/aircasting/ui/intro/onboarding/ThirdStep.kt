@@ -28,7 +28,7 @@ fun ThirdStep(navController: NavHostController) {
             .fillMaxSize()
             .background(colorResource(R.color.aircasting_white))
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
         LinearProgressIndicator(
             progress = 0.60f,
