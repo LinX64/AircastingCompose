@@ -20,10 +20,9 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import com.client.aircasting.ui.theme.Shapes
+import com.client.aircasting.ui.view.theme.Shapes
 
 @ExperimentalMaterialApi
 @Composable

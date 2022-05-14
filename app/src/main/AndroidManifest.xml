@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aircasting">
         <activity
-            android:name=".ui.main.view.MainActivity"
+            android:name="com.client.aircasting.ui.view.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Aircasting">
             <intent-filter>
