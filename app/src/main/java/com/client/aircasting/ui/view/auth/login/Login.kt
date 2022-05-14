@@ -7,7 +7,6 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -24,6 +23,7 @@ import com.client.aircasting.ui.view.auth.login.components.*
 import com.client.aircasting.ui.view.navigation.NavRoutes
 import com.client.aircasting.ui.viewmodel.AuthViewModel
 import com.client.aircasting.util.common.ProgressBarLoading
+import com.client.aircasting.util.common.ShowToastBar
 
 @Composable
 fun Login(
@@ -38,6 +38,8 @@ fun Login(
 
     val isLoading = authViewModel.isLoading.value
     val isSuccessLoading = authViewModel.isSuccessLoading.value
+    val errorMessage = authViewModel.errorMessage.value
+    val errorAuth = authViewModel.errorAuth.value
 
     Column(
         modifier = Modifier
@@ -67,7 +69,7 @@ fun Login(
             LoginPasswordTextField(
                 password = password,
                 onValueChange = { password = it },
-                onDone = { focusManager.clearFocus() }
+                onDone = {  focusManager.clearFocus() }
             )
 
             Button(
@@ -95,12 +97,18 @@ fun Login(
         }
     }
 
-    if (isLoading) {
-        ProgressBarLoading(isLoading = isLoading)
-    }
+    ProgressBarLoading(isLoading = isLoading)
 
-    if (isSuccessLoading) {
-        navController.navigate(NavRoutes.Dashboard.route)
-    }
+    goToDashboard(isSuccessLoading, navController)
 
+    ShowToastBar(textMessage = errorMessage, errorAuth)
+
+}
+
+private fun goToDashboard(isSuccessLoading: Boolean, navController: NavHostController) {
+    if (isSuccessLoading) navController.navigate(route = NavRoutes.Dashboard.route) {
+        popUpTo(route = NavRoutes.Dashboard.route) {
+            inclusive = true
+        }
+    }
 }
