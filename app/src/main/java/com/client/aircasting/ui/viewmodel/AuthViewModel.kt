@@ -1,12 +1,9 @@
 package com.client.aircasting.ui.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.client.aircasting.data.api.helpers.ApiServiceFactory
-import com.client.aircasting.data.api.responses.UserResponse
 import com.client.aircasting.util.Settings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +18,8 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
     var isLoading = mutableStateOf(false)
     var isSuccessLoading = mutableStateOf(false)
-    var errorResponse = mutableStateOf("")
+    var errorMessage = mutableStateOf("")
+    val errorAuth = mutableStateOf(false)
 
     fun login(profileName: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
@@ -36,14 +34,20 @@ class AuthViewModel @Inject constructor(
                         mSettings.login(body.email, body.authentication_token)
                     }
                     isSuccessLoading.value = true
+                    isLoading.value = false
                 }
-                responseService.code() == 401 -> errorResponse.value = responseService.errorBody().toString()
-                else ->errorResponse.value = responseService.errorBody().toString()
+                else -> responseService.errorBody()?.let { error ->
+                    errorAuth.value = true
+                    delay(1500L)
+                    errorAuth.value = false
+                    error.close()
+                }
             }
 
             isLoading.value = false
         } catch (e: Exception) {
             isLoading.value = false
+            errorMessage.value = e.message.toString()
         }
     }
 }
