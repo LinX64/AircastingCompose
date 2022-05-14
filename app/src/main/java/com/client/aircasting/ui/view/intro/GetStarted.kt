@@ -94,7 +94,7 @@ fun GetStarted(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
-                onClick = { goToDashboard(navController) }) {
+                onClick = { goToFirstStep(navController) }) {
                 Text(
                     text = stringResource(id = R.string.get_started),
                     color = colorResource(id = R.color.aircasting_blue_400),
@@ -106,7 +106,7 @@ fun GetStarted(navController: NavHostController) {
     }
 }
 
-fun goToDashboard(navController: NavHostController) {
+private fun goToFirstStep(navController: NavHostController) {
     navController.navigate(NavRoutes.FirstStep.route)
 }
 
