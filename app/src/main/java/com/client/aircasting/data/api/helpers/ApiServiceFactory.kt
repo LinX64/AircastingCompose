@@ -2,6 +2,7 @@ package com.client.aircasting.data.api.helpers
 
 import android.util.Base64
 import com.client.aircasting.BuildConfig
+import com.client.aircasting.data.api.helpers.Constants.baseUrl
 import com.client.aircasting.data.api.services.ApiService
 import com.client.aircasting.util.Settings
 import okhttp3.HttpUrl
@@ -12,8 +13,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-open class ApiServiceFactory(private val mSettings: Settings) {
+open class ApiServiceFactory @Inject constructor(private val mSettings: Settings) {
     fun get(interceptors: List<Interceptor>): ApiService {
         val logging = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
