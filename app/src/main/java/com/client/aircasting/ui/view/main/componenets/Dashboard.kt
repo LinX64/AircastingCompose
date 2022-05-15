@@ -74,7 +74,6 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
     showSystemUi = true,
     showBackground = true
 )
-
 @Composable
 fun MainScreenPreview() {
     val navController = rememberNavController()
