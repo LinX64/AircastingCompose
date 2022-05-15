@@ -167,7 +167,7 @@ fun Register(
 
             ClickableText(
                 text = AnnotatedString(stringResource(R.string.login_text_button)),
-                onClick = { goToLogin(navController) },
+                onClick = { goToLogin(true, navController) },
                 style = TextStyle(
                     color = colorResource(R.color.aircasting_blue_400),
                     fontWeight = FontWeight.Bold
@@ -185,15 +185,4 @@ fun Register(
 
 private fun goToLogin(isSuccessLoading: Boolean, navController: NavHostController) {
     if (isSuccessLoading) navController.navigate(NavRoutes.Login.route) { launchSingleTop = true }
-}
-
-private fun goToLogin(navController: NavHostController) {
-    navController.navigate(NavRoutes.Login.route)
-}
-
-@Preview
-@Composable
-fun ShowRegisterPreview() {
-    val navController = rememberNavController()
-    Register(navController = navController)
 }

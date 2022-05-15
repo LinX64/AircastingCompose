@@ -11,7 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -32,21 +35,16 @@ fun LastLoginText(navController: NavHostController) {
             color = colorResource(id = R.color.aircasting_grey_700)
         )
 
-        /*Text(
-            text = stringResource(id = R.string.create_account_text_button),
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = dimensionResource(R.dimen.keyline_3)),
-            color = colorResource(id = R.color.aircasting_blue_400),
-            fontWeight = FontWeight.Bold
-        )*/
-
         val annotatedString = buildAnnotatedString {
             append(stringResource(R.string.create_account_text_button))
 
         }
         ClickableText(
             text = annotatedString,
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.body1.merge(TextStyle(
+                color = colorResource(R.color.aircasting_blue_400),
+                fontWeight = FontWeight.Bold
+            )),
             modifier = Modifier.padding(start = dimensionResource(R.dimen.keyline_2)),
             onClick = {
                 goToRegister(navController)
