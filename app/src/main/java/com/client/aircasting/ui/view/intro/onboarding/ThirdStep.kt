@@ -98,7 +98,7 @@ fun ThirdStep(navController: NavHostController) {
     }
 }
 
-fun goToRegister(navController: NavHostController) {
+private fun goToRegister(navController: NavHostController) {
     navController.navigate(NavRoutes.Register.route)
 }
 

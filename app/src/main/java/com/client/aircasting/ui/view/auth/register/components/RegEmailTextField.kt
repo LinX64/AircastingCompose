@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.view.auth.login.components
+package com.client.aircasting.ui.view.auth.register.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -20,24 +21,22 @@ import androidx.compose.ui.unit.dp
 import com.client.aircasting.R
 
 @Composable
-fun LoginEmailTextField(
-    textValue: String,
+fun RegEmailTextField(
+    email: String,
     onValueChange: (String) -> Unit,
     onClickButton: () -> Unit,
     onNext: (KeyboardActionScope.() -> Unit)
 ) {
     OutlinedTextField(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 20.dp),
-        value = textValue,
+            .fillMaxWidth(),
+        value = email,
         onValueChange = onValueChange,
         label = {
             Text(
-                text = stringResource(R.string.profile_name_hint),
+                text = stringResource(id = R.string.email_hint),
             )
-        },
-        trailingIcon = {
+        }, trailingIcon = {
             IconButton(
                 onClick = onClickButton
             ) {

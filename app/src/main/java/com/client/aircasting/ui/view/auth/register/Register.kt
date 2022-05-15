@@ -9,11 +9,14 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -22,17 +25,35 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
-import com.client.aircasting.ui.view.auth.register.components.LabelledCheckBox
-import com.client.aircasting.ui.view.auth.register.components.RegisterTextFields
+import com.client.aircasting.ui.view.auth.register.components.*
 import com.client.aircasting.ui.view.navigation.NavRoutes
+import com.client.aircasting.ui.viewmodel.AuthViewModel
+import com.client.aircasting.util.common.ProgressBarLoading
+import com.client.aircasting.util.common.ShowToastBar
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun Register(navController: NavHostController) {
-    val checkedState = remember { mutableStateOf(true) }
+fun Register(
+    authViewModel: AuthViewModel = hiltViewModel(),
+    navController: NavHostController
+) {
+    var profileName by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    val sendEmails = remember { mutableStateOf(true) }
+
+    val isValidate by derivedStateOf { profileName.isNotBlank() && email.isNotBlank() && password.isNotBlank() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
+
+    val isLoading = authViewModel.isLoading.value
+    val isSuccessLoading = authViewModel.isSuccessLoading.value
+    val errorMessage = authViewModel.errorMessage.value
+    val errorAuth = authViewModel.errorAuth.value
 
     Column(
         modifier = Modifier
@@ -57,47 +78,71 @@ fun Register(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_10)))
 
-        Text(
-            text = stringResource(R.string.create_account_header),
-            modifier = Modifier.padding(start = 34.dp),
-            color = colorResource(id = R.color.aircasting_blue_400),
-            style = MaterialTheme.typography.h4,
-            fontWeight = FontWeight.Bold
-        )
+        RegTextViews()
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
+        Column(
+            Modifier
+                .padding(
+                    start = dimensionResource(R.dimen.keyline_8),
+                    end = dimensionResource(R.dimen.keyline_8)
+                )
+        ) {
 
-        Text(
-            text = stringResource(R.string.create_account_description),
-            modifier = Modifier.padding(start = dimensionResource(R.dimen.keyline_9)),
-            color = colorResource(id = R.color.aircasting_grey_700),
-            style = MaterialTheme.typography.body1,
-        )
+            RegProfileNameTextField(
+                profileName = profileName,
+                onValueChange = { profileName = it },
+                onClickButton = { profileName = "" },
+                onNext = { focusManager.moveFocus(FocusDirection.Down) }
+            )
 
-        RegisterTextFields()
+            Spacer(Modifier.padding(dimensionResource(R.dimen.keyline_2)))
 
-        Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.keyline_3)))
+            RegEmailTextField(
+                email = email,
+                onValueChange = { email = it },
+                onClickButton = { email = "" },
+                onNext = { focusManager.moveFocus(FocusDirection.Down) }
+            )
+
+            Spacer(Modifier.padding(dimensionResource(R.dimen.keyline_2)))
+
+            RegPasswordTextField(
+                password = password,
+                onValueChange = { password = it },
+                onDone = { focusManager.clearFocus() }
+            )
+        }
+        Spacer(Modifier.padding(dimensionResource(R.dimen.keyline_2)))
 
         LabelledCheckBox(
+            modifier = Modifier.padding(start = dimensionResource(R.dimen.keyline_3)),
             checked = true,
-            onCheckedChange = { checkedState.value = it },
+            onCheckedChange = { sendEmails.value = it },
             label = stringResource(R.string.send_emails)
         )
 
         Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.keyline_3)))
 
-        Button(modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                start = dimensionResource(R.dimen.keyline_5),
-                end = dimensionResource(R.dimen.keyline_5)
-            )
-            .height(50.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.aircasting_blue_400)),
-            onClick = { // todo
-
-            }) {
-            androidx.compose.material.Text(
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = dimensionResource(R.dimen.keyline_8),
+                    end = dimensionResource(R.dimen.keyline_8)
+                )
+                .height(50.dp),
+            colors = ButtonDefaults.buttonColors(colorResource(R.color.aircasting_blue_400)),
+            onClick = {
+                keyboardController?.hide()
+                authViewModel.createAccount(
+                    profileName,
+                    password,
+                    email,
+                    send_emails = sendEmails.value
+                )
+            }, enabled = isValidate
+        ) {
+            Text(
                 text = stringResource(id = R.string.create_account_text_button),
                 color = colorResource(id = R.color.aircasting_white),
                 fontWeight = FontWeight.Bold
@@ -109,7 +154,7 @@ fun Register(navController: NavHostController) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = dimensionResource(R.dimen.keyline_5))
+                .padding(start = dimensionResource(R.dimen.keyline_8))
         ) {
 
             Text(
@@ -122,20 +167,27 @@ fun Register(navController: NavHostController) {
 
             ClickableText(
                 text = AnnotatedString(stringResource(R.string.login_text_button)),
-                onClick = {
-                    goToLogin(navController)
-                },
+                onClick = { goToLogin(navController) },
                 style = TextStyle(
                     color = colorResource(R.color.aircasting_blue_400),
                     fontWeight = FontWeight.Bold
                 )
             )
         }
-
     }
+
+    ProgressBarLoading(isLoading = isLoading)
+
+    goToLogin(isSuccessLoading, navController)
+
+    ShowToastBar(textMessage = errorMessage, errorAuth)
 }
 
-private fun goToLogin(navController: NavController) {
+private fun goToLogin(isSuccessLoading: Boolean, navController: NavHostController) {
+    if (isSuccessLoading) navController.navigate(NavRoutes.Login.route) { launchSingleTop = true }
+}
+
+private fun goToLogin(navController: NavHostController) {
     navController.navigate(NavRoutes.Login.route)
 }
 

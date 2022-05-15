@@ -8,9 +8,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -25,6 +27,7 @@ import com.client.aircasting.ui.viewmodel.AuthViewModel
 import com.client.aircasting.util.common.ProgressBarLoading
 import com.client.aircasting.util.common.ShowToastBar
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Login(
     authViewModel: AuthViewModel = hiltViewModel(),
@@ -33,6 +36,7 @@ fun Login(
     var profileName by rememberSaveable { mutableStateOf(value = "") }
     var password by rememberSaveable { mutableStateOf(value = "") }
     val isValidate by derivedStateOf { profileName.isNotBlank() && password.isNotBlank() }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     val focusManager = LocalFocusManager.current
 
@@ -57,7 +61,7 @@ fun Login(
 
             TextsLogin()
 
-            LoginEmailTextField(
+            LoginProfileNameTextField(
                 textValue = profileName,
                 onValueChange = { profileName = it },
                 onClickButton = { profileName = "" },
@@ -78,7 +82,11 @@ fun Login(
                     .padding(top = dimensionResource(R.dimen.keyline_8))
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(R.color.aircasting_blue_400)),
-                onClick = { authViewModel.login(profileName, password) }, enabled = isValidate
+                onClick = {
+                    keyboardController?.hide()
+                    authViewModel.login(profileName, password)
+                },
+                enabled = isValidate
             ) {
                 Text(
                     text = stringResource(id = R.string.login_text_button),
@@ -93,7 +101,7 @@ fun Login(
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.keyline_5)))
 
-            LastLoginText()
+            LastLoginText(navController)
         }
     }
 
@@ -106,9 +114,7 @@ fun Login(
 }
 
 private fun goToDashboard(isSuccessLoading: Boolean, navController: NavHostController) {
-    if (isSuccessLoading)
-        navController.navigate(NavRoutes.Dashboard.route) {
-            launchSingleTop = true
-        }
-
+    if (isSuccessLoading) navController.navigate(NavRoutes.Dashboard.route) {
+        launchSingleTop = true
+    }
 }
