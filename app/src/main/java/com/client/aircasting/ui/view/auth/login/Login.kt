@@ -69,7 +69,7 @@ fun Login(
             LoginPasswordTextField(
                 password = password,
                 onValueChange = { password = it },
-                onDone = {  focusManager.clearFocus() }
+                onDone = { focusManager.clearFocus() }
             )
 
             Button(
@@ -106,9 +106,9 @@ fun Login(
 }
 
 private fun goToDashboard(isSuccessLoading: Boolean, navController: NavHostController) {
-    if (isSuccessLoading) navController.navigate(route = NavRoutes.Dashboard.route) {
-        popUpTo(route = NavRoutes.Dashboard.route) {
-            inclusive = true
+    if (isSuccessLoading)
+        navController.navigate(NavRoutes.Dashboard.route) {
+            launchSingleTop = true
         }
-    }
+
 }
