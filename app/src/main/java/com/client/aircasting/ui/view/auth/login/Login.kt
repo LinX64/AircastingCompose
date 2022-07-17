@@ -85,8 +85,7 @@ fun Login(
                 onClick = {
                     keyboardController?.hide()
                     authViewModel.login(profileName, password)
-                },
-                enabled = isValidate
+                }
             ) {
                 Text(
                     text = stringResource(id = R.string.login_text_button),
