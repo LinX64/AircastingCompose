@@ -46,7 +46,7 @@ fun GetStarted(navController: NavHostController) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillWidth
         )
 
         Image(

@@ -53,25 +53,24 @@ fun FirstStep(navController: NavHostController) {
             color = colorResource(id = R.color.aircasting_blue_400)
         )
 
-
         Image(
             painter = painterResource(id = R.drawable.onboarding_air),
             "",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 24.dp, end = 24.dp)
+                .padding(start = 10.dp, end = 10.dp)
                 .constrainAs(image) {
                     top.linkTo(linearProgress.bottom, margin = 24.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Fit
         )
 
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 24.dp, top = 24.dp, bottom = 24.dp)
+                .padding(start = 24.dp, top = 24.dp, bottom = 24.dp, end = 34.dp)
                 .constrainAs(text) {
                     top.linkTo(image.bottom)
                     start.linkTo(parent.start)
@@ -79,7 +78,8 @@ fun FirstStep(navController: NavHostController) {
                 },
             text = stringResource(R.string.onboarding_page2_header),
             style = MaterialTheme.typography.h4,
-            color = colorResource(id = R.color.aircasting_blue_400)
+            color = colorResource(id = R.color.aircasting_blue_400),
+            fontWeight = FontWeight.Bold
         )
 
         Text(
@@ -89,16 +89,16 @@ fun FirstStep(navController: NavHostController) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }
-                .padding(start = 24.dp, bottom = 24.dp),
+                .padding(start = 24.dp, bottom = 24.dp, end = 24.dp),
             text = stringResource(R.string.onboarding_page2_description),
             style = MaterialTheme.typography.body1,
             color = colorResource(id = R.color.aircasting_grey_700),
-            lineHeight = 20.sp
+            lineHeight = 30.sp
         )
 
         Button(
             modifier = Modifier
-                .padding(start = 24.dp, end = 24.dp)
+                .padding(start = 24.dp, top = 20.dp, end = 24.dp)
                 .fillMaxWidth()
                 .height(50.dp)
                 .constrainAs(btn) {
