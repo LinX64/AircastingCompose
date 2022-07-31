@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +22,7 @@ import com.client.aircasting.R
 import com.client.aircasting.ui.view.navigation.NavRoutes
 
 @Composable
-fun FollowingScreen() {
+fun FollowingScreen(navController: NavHostController = rememberNavController()) {
     Column(
         modifier = Modifier
             .padding(start = 24.dp, end = 24.dp)
@@ -71,15 +72,25 @@ fun FollowingScreen() {
 
             Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.keyline_3)))
 
-            Text(
+            TextButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResource(id = R.string.explore_existing_sessions),
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center
-            )
-
+                onClick = {
+                    goToSearchFollow(navController)
+                },
+            ){
+                Text(
+                    text = stringResource(id = R.string.explore_existing_sessions),
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center,
+                    color = colorResource(id = R.color.aircasting_dark_blue)
+                )
+            }
         }
     }
+}
+
+private fun goToSearchFollow(navController: NavHostController) {
+    navController.navigate(NavRoutes.SearchFollow.route)
 }
 
 @Preview(showBackground = true)
@@ -89,6 +100,3 @@ fun FollowingScreenPreview() {
     FollowingScreen()
 }
 
-fun goToLetsStart(navController: NavHostController) {
-    navController.navigate(NavRoutes.LetsStart.route)
-}

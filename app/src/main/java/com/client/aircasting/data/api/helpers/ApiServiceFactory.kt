@@ -2,7 +2,6 @@ package com.client.aircasting.data.api.helpers
 
 import android.util.Base64
 import com.client.aircasting.BuildConfig
-import com.client.aircasting.data.api.helpers.Constants.baseUrl
 import com.client.aircasting.data.api.services.ApiService
 import com.client.aircasting.util.Settings
 import okhttp3.HttpUrl

@@ -86,7 +86,7 @@ fun BottomCardView() {
         ) {
 
             Image(
-                painter = painterResource(id = R.drawable.didyouknowimage),
+                painter = painterResource(id = R.drawable.didyouknow),
                 ""
             )
 

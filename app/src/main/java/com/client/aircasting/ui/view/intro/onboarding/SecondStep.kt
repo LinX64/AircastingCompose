@@ -180,7 +180,7 @@ private fun LayoutContent(
         )
 
         Image(
-            painter = painterResource(id = R.drawable.onboarding_map2),
+            painter = painterResource(id = R.drawable.airbeam),
             "",
             modifier = Modifier
                 .fillMaxWidth()
