@@ -1,4 +1,4 @@
-package com.client.aircasting.ui.view.main.componenets
+package com.client.aircasting.ui.view.main.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Scaffold
@@ -7,11 +7,13 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.client.aircasting.R
 import com.client.aircasting.ui.view.main.tabs.TabItem
+import com.client.aircasting.ui.view.theme.AircastingTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -20,7 +22,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun Dashboard(navController: NavController) {
+fun Dashboard() {
     val tabs = listOf(
         TabItem.Following,
         TabItem.Active,
@@ -28,10 +30,13 @@ fun Dashboard(navController: NavController) {
         TabItem.Fixed
     )
     val pagerState = rememberPagerState()
+    val navController = rememberNavController()
 
     Scaffold(
         topBar = { TopBar() },
-        bottomBar = { BottomBar() }, content = {
+        bottomBar = { BottomNavigationBar(navController) },
+        content = {
+
             Column {
                 Tabs(tabs = tabs, pagerState = pagerState)
                 TabsContent(tabs = tabs, pagerState = pagerState)
@@ -46,7 +51,9 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
 
     ScrollableTabRow(
         selectedTabIndex = pagerState.currentPage,
-        edgePadding = 5.dp
+        edgePadding = 5.dp,
+        containerColor = colorResource(id = R.color.aircasting_white),
+        contentColor = colorResource(id = R.color.aircasting_grey_700)
     ) {
 
         tabs.forEachIndexed { index, tab ->
@@ -76,6 +83,7 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
 )
 @Composable
 fun MainScreenPreview() {
-    val navController = rememberNavController()
-    Dashboard(navController = navController)
+    AircastingTheme {
+        Dashboard()
+    }
 }
