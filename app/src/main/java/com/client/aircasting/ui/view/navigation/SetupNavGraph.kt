@@ -15,7 +15,7 @@ fun SetupNavGraph(mainViewModel: MainViewModel) {
 
     NavHost(
         navController = navController,
-        startDestination = HOME_GRAPH_ROUTE,
+        startDestination = INTRO_GRAPH_ROUTE,
         route = ROOT_GRAPH_ROUTE
     ) {
         introNavGraph(navController)
