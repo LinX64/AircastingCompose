@@ -54,7 +54,7 @@ fun FirstStep(navController: NavHostController) {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.onboarding_picture_1),
+            painter = painterResource(id = R.drawable.airbeam_in_hand),
             "",
             modifier = Modifier
                 .fillMaxWidth()
