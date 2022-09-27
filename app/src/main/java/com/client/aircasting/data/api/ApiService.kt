@@ -1,9 +1,8 @@
-package com.client.aircasting.data.api.services
+package com.client.aircasting.data.api
 
 import com.client.aircasting.data.api.helpers.Constants
 import com.client.aircasting.data.api.params.CreateAccountBody
 import com.client.aircasting.data.api.responses.UserResponse
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

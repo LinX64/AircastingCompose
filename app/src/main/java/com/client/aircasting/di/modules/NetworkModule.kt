@@ -1,8 +1,8 @@
 package com.client.aircasting.di.modules
 
 import com.client.aircasting.BuildConfig
+import com.client.aircasting.data.api.ApiService
 import com.client.aircasting.data.api.helpers.Constants
-import com.client.aircasting.data.api.services.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,16 +22,6 @@ class NetworkModule {
 
     @Provides
     fun provideBaseUrl() = Constants.baseUrl
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(client: OkHttpClient): ApiService =
-        Retrofit.Builder()
-            .baseUrl(provideBaseUrl())
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-            .create(ApiService::class.java)
 
     @Provides
     @Singleton
@@ -55,5 +45,18 @@ class NetworkModule {
                 level = HttpLoggingInterceptor.Level.NONE
             }
     }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(client: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(provideBaseUrl())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
 }

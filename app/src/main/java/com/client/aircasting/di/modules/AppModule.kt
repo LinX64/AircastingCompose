@@ -11,11 +11,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule() {
+class AppModule {
 
     @Provides
     @Singleton
     fun providesErrorHandler(@ApplicationContext appContext: Context): ErrorHandler =
         ErrorHandler(appContext)
-
 }

@@ -19,7 +19,7 @@ fun NavGraphBuilder.introNavGraph(
         route = INTRO_GRAPH_ROUTE
     ) {
         composable(NavRoutes.GetStarted.route) {
-            GetStarted( navController)
+            GetStarted(navController)
         }
         composable(NavRoutes.FirstStep.route) {
             FirstStep(navController)

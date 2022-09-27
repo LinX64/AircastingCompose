@@ -22,9 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            AircastingTheme {
-                SetupNavGraph()
-            }
+            AircastingTheme { SetupNavGraph() }
         }
     }
 }
@@ -34,9 +32,7 @@ class MainActivity : ComponentActivity() {
 fun ShowMainPreview() {
     val navController = rememberNavController()
 
-    AircastingTheme {
-        Dashboard(navController)
-    }
+    AircastingTheme { Dashboard(navController) }
 }
 
 
