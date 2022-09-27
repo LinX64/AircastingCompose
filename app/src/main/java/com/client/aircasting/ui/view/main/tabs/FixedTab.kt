@@ -7,11 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.client.aircasting.ui.viewmodel.MainViewModel
 import com.client.aircasting.util.session_card.ExpandableCard
 
 @Composable
-fun FixedScreen(mainViewModel: MainViewModel = MainViewModel()) {
+fun FixedScreen() {
     Column(
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp)
