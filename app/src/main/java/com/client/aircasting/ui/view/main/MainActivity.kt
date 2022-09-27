@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.client.aircasting.ui.view.main.components.Dashboard
 import com.client.aircasting.ui.view.navigation.SetupNavGraph
 import com.client.aircasting.ui.view.theme.AircastingTheme
 import com.client.aircasting.ui.viewmodel.MainViewModel
@@ -19,9 +23,19 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AircastingTheme {
-                SetupNavGraph(mainViewModel)
+                SetupNavGraph()
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun ShowMainPreview() {
+    val navController = rememberNavController()
+
+    AircastingTheme {
+        Dashboard(navController)
     }
 }
 

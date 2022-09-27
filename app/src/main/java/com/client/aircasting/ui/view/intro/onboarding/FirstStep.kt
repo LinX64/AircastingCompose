@@ -46,7 +46,7 @@ fun FirstStep(navController: NavHostController) {
                 .clip(RoundedCornerShape(20.dp))
                 .fillMaxWidth()
                 .constrainAs(linearProgress) {
-                    top.linkTo(parent.top, margin = 16.dp)
+                    top.linkTo(parent.top, margin = 20.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },

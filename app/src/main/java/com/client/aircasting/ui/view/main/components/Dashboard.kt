@@ -10,6 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
 import com.client.aircasting.ui.view.main.tabs.TabItem
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun Dashboard() {
+fun Dashboard(navController: NavHostController) {
     val tabs = listOf(
         TabItem.Following,
         TabItem.Active,
@@ -30,10 +31,9 @@ fun Dashboard() {
         TabItem.Fixed
     )
     val pagerState = rememberPagerState()
-    val navController = rememberNavController()
 
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { TopBar(navController) },
         bottomBar = { BottomNavigationBar(navController) },
         content = {
 
@@ -83,7 +83,8 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState) {
 )
 @Composable
 fun MainScreenPreview() {
+    val navController = rememberNavController()
     AircastingTheme {
-        Dashboard()
+        Dashboard(navController)
     }
 }

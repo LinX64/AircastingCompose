@@ -19,16 +19,16 @@ fun NavGraphBuilder.introNavGraph(
         route = INTRO_GRAPH_ROUTE
     ) {
         composable(NavRoutes.GetStarted.route) {
-            GetStarted(navController = navController)
+            GetStarted( navController)
         }
         composable(NavRoutes.FirstStep.route) {
-            FirstStep(navController = navController)
+            FirstStep(navController)
         }
         composable(NavRoutes.SecondStep.route) {
-            SecondStep(navController = navController)
+            SecondStep(navController)
         }
         composable(NavRoutes.ThirdStep.route) {
-            ThirdStep(navController = navController)
+            ThirdStep(navController)
         }
     }
 }

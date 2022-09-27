@@ -7,10 +7,9 @@ import com.client.aircasting.ui.view.navigation.nav_graphs.authNavGraph
 import com.client.aircasting.ui.view.navigation.nav_graphs.homeNavGraph
 import com.client.aircasting.ui.view.navigation.nav_graphs.introNavGraph
 import com.client.aircasting.ui.view.navigation.nav_graphs.searchFollowGraph
-import com.client.aircasting.ui.viewmodel.MainViewModel
 
 @Composable
-fun SetupNavGraph(mainViewModel: MainViewModel) {
+fun SetupNavGraph() {
     val navController = rememberNavController()
 
     NavHost(
@@ -20,7 +19,7 @@ fun SetupNavGraph(mainViewModel: MainViewModel) {
     ) {
         introNavGraph(navController)
         authNavGraph(navController)
-        homeNavGraph()
-        searchFollowGraph()
+        homeNavGraph(navController)
+        searchFollowGraph(navController)
     }
 }

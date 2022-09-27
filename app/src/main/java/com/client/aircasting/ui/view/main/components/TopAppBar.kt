@@ -15,13 +15,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.client.aircasting.R
 import com.client.aircasting.ui.view.navigation.NavRoutes
 
 @Composable
-fun TopBar(navController: NavHostController = rememberNavController()) {
+fun TopBar(navController: NavController) {
     TopAppBar(
         elevation = 0.dp,
         title = {
@@ -47,12 +47,13 @@ fun TopBar(navController: NavHostController = rememberNavController()) {
         })
 }
 
-private fun goToSearchFollow(navController: NavHostController) {
-    navController.navigate(NavRoutes.SearchFollow.route)
+private fun goToSearchFollow(navController: NavController) {
+    navController.navigate(NavRoutes.SearchFollowResult.route)
 }
 
 @Preview
 @Composable
 fun TopBarPreview() {
-    TopBar()
+    val navController = rememberNavController()
+    TopBar(navController = navController)
 }

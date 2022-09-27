@@ -8,10 +8,12 @@ import com.client.aircasting.ui.view.lets_begin.LetsBegin
 import com.client.aircasting.ui.view.settings.Settings
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(
+    navController: NavHostController
+) {
     NavHost(navController, startDestination = NavigationItem.Home.route) {
         composable(NavigationItem.Home.route) {
-            Dashboard()
+            Dashboard(navController)
         }
         composable(NavigationItem.LetsBegin.route) {
             LetsBegin()
